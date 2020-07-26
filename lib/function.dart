@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'controllers.dart';
 
 double custoDiario1 = 0;
@@ -20,24 +22,68 @@ double diferencaPeso = 0;
 double diferencaLucro = 0;
 double lucroLote = 0;
 
+void resetFields() {
+  textProduto1 = '';
+  textProduto2 = '';
+  precoArrobaController.clear();
+  numeroAnimaisController.clear();
+  pesoInicialController.clear();
+  periodoController.clear();
+  textProduto1Controller.clear();
+  textProduto2Controller.clear();
+  custo1Controller.clear();
+  custo2Controller.clear();
+  consumoDiario1Controller.clear();
+  consumoDiario2Controller.clear();
+  ganhoDiario1controller.clear();
+  ganhoDiario2controller.clear();
+  custoDiario1 = 0;
+  ganhoDiarioRs1 = 0;
+  custoPeriodo1 = 0;
+  ganhoPeriodo1 = 0;
+  lucroPeriodo1 = 0;
+  ganhokg1 = 0;
+  pesoFinal1 = 0;
+
+  custoDiario2 = 0;
+  ganhoDiarioRs2 = 0;
+  custoPeriodo2 = 0;
+  ganhoPeriodo2 = 0;
+  lucroPeriodo2 = 0;
+  ganhokg2 = 0;
+  pesoFinal2 = 0;
+
+  diferencaPeso = 0;
+  diferencaLucro = 0;
+  lucroLote = 0;
+}
+
 void receiveText1() {
   textProduto1 = textProduto1Controller.text;
 }
 
 void calculateCustoDiario1() {
-  custoDiario1 = custo1 * consumoDiario1 / 1000;
+  custoDiario1 = double.parse(custo1Controller.text) *
+      double.parse(consumoDiario1Controller.text) /
+      1000;
 }
 
 void calculateCustoPeriodo1() {
-  custoPeriodo1 = periodo * custo1 * consumoDiario1 / 1000;
+  custoPeriodo1 = double.parse(periodoController.text) *
+      double.parse(custo1Controller.text) *
+      double.parse(consumoDiario1Controller.text) /
+      1000;
 }
 
 void calculateGanhoRs1() {
-  ganhoDiarioRs1 = ganhoDiario1 / 30 * precoArroba / 1000;
+  ganhoDiarioRs1 = double.parse(ganhoDiario1controller.text) /
+      30 *
+      double.parse(precoArrobaController.text) /
+      1000;
 }
 
 void calculateGanhoPeriodo1() {
-  ganhoPeriodo1 = ganhoDiarioRs1 * periodo;
+  ganhoPeriodo1 = ganhoDiarioRs1 * double.parse(periodoController.text);
 }
 
 void calculatelucroPeriodo1() {
@@ -45,11 +91,13 @@ void calculatelucroPeriodo1() {
 }
 
 void calculateGanhoKg1() {
-  ganhokg1 = ganhoDiario1 * periodo / 1000;
+  ganhokg1 = double.parse(ganhoDiario1controller.text) *
+      double.parse(periodoController.text) /
+      1000;
 }
 
 void calculatePesoFinal1() {
-  pesoFinal1 = pesoInicial + ganhokg1;
+  pesoFinal1 = double.parse(pesoInicialController.text) + ganhokg1;
 }
 
 void receiveText2() {
@@ -57,19 +105,27 @@ void receiveText2() {
 }
 
 void calculateCustoDiario2() {
-  custoDiario2 = custo2 * consumoDiario2 / 1000;
+  custoDiario2 = double.parse(custo2Controller.text) *
+      double.parse(consumoDiario2Controller.text) /
+      1000;
 }
 
 void calculateCustoPeriodo2() {
-  custoPeriodo2 = periodo * custo2 * consumoDiario2 / 1000;
+  custoPeriodo2 = double.parse(periodoController.text) *
+      double.parse(custo2Controller.text) *
+      double.parse(consumoDiario2Controller.text) /
+      1000;
 }
 
 void calculateGanhoRs2() {
-  ganhoDiarioRs2 = ganhoDiario2 / 30 * precoArroba / 1000;
+  ganhoDiarioRs2 = double.parse(ganhoDiario2controller.text) /
+      30 *
+      double.parse(precoArrobaController.text) /
+      1000;
 }
 
 void calculateGanhoPeriodo2() {
-  ganhoPeriodo2 = ganhoDiarioRs2 * periodo;
+  ganhoPeriodo2 = ganhoDiarioRs2 * double.parse(periodoController.text);
 }
 
 void calculatelucroPeriodo2() {
@@ -77,11 +133,13 @@ void calculatelucroPeriodo2() {
 }
 
 void calculateGanhoKg2() {
-  ganhokg2 = ganhoDiario2 * periodo / 1000;
+  ganhokg2 = double.parse(ganhoDiario2controller.text) *
+      double.parse(periodoController.text) /
+      1000;
 }
 
 void calculatePesoFinal2() {
-  pesoFinal2 = pesoInicial + ganhokg2;
+  pesoFinal2 = double.parse(pesoInicialController.text) + ganhokg2;
 }
 
 void calculateDiferencaPeso() {
@@ -93,5 +151,5 @@ void calculateDiferencaLucro() {
 }
 
 void calculateLucroLote() {
-  lucroLote = diferencaLucro * numeroAnimais;
+  lucroLote = diferencaLucro * double.parse(numeroAnimaisController.text);
 }

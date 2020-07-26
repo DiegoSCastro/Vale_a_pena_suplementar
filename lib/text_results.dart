@@ -26,21 +26,25 @@ class TextResults extends StatelessWidget {
 }
 
 String getResultPeso() {
-  if (pesoFinal1 >= pesoFinal2) {
-    return 'O $textProduto1 terá $diferencaPeso kg de ganho de peso por animal a mais no período.';
+  if (pesoFinal1 == 0 && pesoFinal2 == 0) {
+    return '';
+  } else if (pesoFinal1 >= pesoFinal2) {
+    return 'O $textProduto1 apresenta um ganho de peso de $diferencaPeso kg a mais por animal no período.';
   } else {
-    return 'O $textProduto2 terá ${diferencaPeso * -1} kg de ganho de peso por animal a mais no período.';
+    return 'O $textProduto2 apresenta um ganho de peso de ${diferencaPeso.abs()} kg a mais por animal no período.';
   }
 }
 
 String getResultLucro() {
-  if (lucroPeriodo1 >= lucroPeriodo2) {
+  if (lucroPeriodo1 == 0 && lucroPeriodo2 == 0) {
+    return '';
+  } else if (lucroPeriodo1 >= lucroPeriodo2) {
     return 'O $textProduto1 terá uma lucratividade superior '
-        'de R\$ $diferencaLucro por animal, o que'
-        ' representa um ganho de R\$ ${lucroLote.toStringAsFixed(2)} no lote.';
+        'de R\$ ${diferencaLucro.toStringAsFixed(2)} por animal, o que'
+        ' representa um ganho de R\$ ${lucroLote.toStringAsFixed(2)} em todo lote durante o período.';
   } else {
     return 'O $textProduto2 terá uma lucratividade superior '
-        'de R\$ ${(diferencaLucro * -1).toStringAsFixed(2)} por animal, o que'
-        ' representa um ganho de R\$ ${(lucroLote * -1).toStringAsFixed(2)} no lote.';
+        'de R\$ ${(diferencaLucro.abs()).toStringAsFixed(2)} por animal, o que'
+        ' representa um ganho de R\$ ${(lucroLote.abs()).toStringAsFixed(2)} em todo lote durante o período.';
   }
 }

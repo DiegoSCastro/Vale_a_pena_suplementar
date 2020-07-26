@@ -5,7 +5,12 @@ import 'controllers.dart';
 import 'function.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(
+    MaterialApp(
+      home: Home(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }
 
 class Home extends StatefulWidget {
@@ -18,8 +23,21 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Vale a pena Suplementar?'),
-        backgroundColor: Colors.green[600],
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              setState(() {
+                resetFields();
+              });
+            },
+            icon: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+          )
+        ],
+        title: Text('Qual a Melhor Suplementação ?'),
+        backgroundColor: Colors.green[700],
       ),
       body: ListView(
         children: [
@@ -231,16 +249,16 @@ class _HomeState extends State<Home> {
                         getResultPeso();
                         getResultLucro();
                         calculateLucroLote();
-                        print(getResultPeso());
                       });
                     },
                     padding: EdgeInsets.all(10),
-                    color: Colors.green,
+                    color: Colors.green[700],
                     child: Text(
                       'Calcular',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -335,7 +353,27 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 10,
                 ),
-                TextResults()
+                TextResults(),
+                Container(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    elevation: 10,
+                    onPressed: () {
+                      setState(() {
+                        resetFields();
+                      });
+                    },
+                    padding: EdgeInsets.all(10),
+                    color: Colors.green[700],
+                    child: Text(
+                      'Apagar Tudo!',
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
